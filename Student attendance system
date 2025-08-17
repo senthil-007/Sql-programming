@@ -1,0 +1,55 @@
+
+CREATE DATABASE SchoolDB;
+USE SchoolDB;
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    class VARCHAR(20),
+    roll_no INT UNIQUE
+);
+CREATE TABLE Attendance (
+    attendance_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT,
+    date DATE,
+    status ENUM('Present', 'Absent', 'Leave') NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)
+);
+INSERT INTO Students (name, class, roll_no) 
+VALUES 
+('Ravi Kumar', '10A', 1),
+('Anita Sharma', '10A', 2),
+('Mohit Singh', '10A', 3),
+('Priya Patel', '10A', 4);
+INSERT INTO Attendance (student_id, date, status)
+VALUES
+(1, '2025-08-15', 'Present'),
+(2, '2025-08-15', 'Absent'),
+(3, '2025-08-15', 'Present'),
+(4, '2025-08-15', 'Leave'),
+
+(1, '2025-08-16', 'Absent'),
+(2, '2025-08-16', 'Present'),
+(3, '2025-08-16', 'Present'),
+(4, '2025-08-16', 'Present'),
+
+(1, '2025-08-17', 'Present'),
+(2, '2025-08-17', 'Absent'),
+(3, '2025-08-17', 'Present'),
+(4, '2025-08-17', 'Leave');
+SELECT s.roll_no, s.name, s.class, a.date, a.status
+FROM Attendance a
+JOIN Students s ON a.student_id = s.student_id
+ORDER BY a.date, s.roll_no;
+SELECT s.roll_no, s.name, a.date, a.status
+FROM Attendance a
+JOIN Students s ON a.student_id = s.student_id
+WHERE s.name = 'Ravi Kumar'
+ORDER BY a.date;
+SELECT s.roll_no, s.name,
+    SUM(CASE WHEN a.status = 'Present' THEN 1 ELSE 0 END) AS Total_Present,
+    SUM(CASE WHEN a.status = 'Absent' THEN 1 ELSE 0 END) AS Total_Absent,
+    SUM(CASE WHEN a.status = 'Leave' THEN 1 ELSE 0 END) AS Total_Leave
+FROM Students s
+LEFT JOIN Attendance a ON s.student_id = a.student_id
+GROUP BY s.roll_no, s.name
+ORDER BY s.roll_no;
