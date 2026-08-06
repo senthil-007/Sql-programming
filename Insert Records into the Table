@@ -1,0 +1,7 @@
+INSERT INTO Student (StudentID, Name, Age, Department, Marks)
+VALUES
+(1, 'Senthil', 21, 'Mechatronics', 85),
+(2, 'Rahul', 22, 'CSE', 90),
+(3, 'Priya', 20, 'ECE', 78),
+(4, 'Anitha', 21, 'IT', 92),
+(5, 'Kumar', 22, 'Mechanical', 80);
