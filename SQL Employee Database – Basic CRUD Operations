@@ -1,0 +1,65 @@
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(30),
+    Salary DECIMAL(10,2),
+    City VARCHAR(30)
+);
+
+-- Insert Sample Records
+INSERT INTO Employee (EmployeeID, Name, Department, Salary, City)
+VALUES
+(101, 'Senthil', 'Data Science', 50000, 'Chennai'),
+(102, 'Rahul', 'Software', 45000, 'Bangalore'),
+(103, 'Priya', 'Data Science', 60000, 'Chennai'),
+(104, 'Anitha', 'HR', 55000, 'Hyderabad'),
+(105, 'Kumar', 'Software', 48000, 'Coimbatore');
+
+-- Display All Employees
+SELECT * FROM Employee;
+
+-- Display Employees with Salary Greater Than 50,000
+SELECT *
+FROM Employee
+WHERE Salary > 50000;
+
+-- Display Employees from Chennai
+SELECT *
+FROM Employee
+WHERE City = 'Chennai';
+
+-- Update Employee Salary
+UPDATE Employee
+SET Salary = 65000
+WHERE EmployeeID = 103;
+
+-- Delete an Employee Record
+DELETE FROM Employee
+WHERE EmployeeID = 105;
+
+-- Sort Employees by Salary (Highest First)
+SELECT *
+FROM Employee
+ORDER BY Salary DESC;
+
+-- Count Total Employees
+SELECT COUNT(*) AS TotalEmployees
+FROM Employee;
+
+-- Find Average Salary
+SELECT AVG(Salary) AS AverageSalary
+FROM Employee;
+
+-- Find Highest Salary
+SELECT MAX(Salary) AS HighestSalary
+FROM Employee;
+
+-- Group Employees by Department
+SELECT Department, COUNT(*) AS EmployeeCount
+FROM Employee
+GROUP BY Department;
+
+-- Find Employees with Names Starting with 'S'
+SELECT *
+FROM Employee
+WHERE Name LIKE 'S%';
