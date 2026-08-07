@@ -1,0 +1,37 @@
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Marks INT
+);
+
+INSERT INTO Student
+VALUES
+(101,'Senthil','Mechatronics',90),
+(102,'Rahul','CSE',85),
+(103,'Priya','ECE',92),
+(104,'Anitha','IT',88);
+
+SELECT * FROM Student;
+
+SELECT *
+FROM Student
+WHERE Marks > 85;
+
+UPDATE Student
+SET Marks = 95
+WHERE StudentID = 101;
+
+DELETE FROM Student
+WHERE StudentID = 104;
+
+SELECT *
+FROM Student
+ORDER BY Marks DESC;
+
+SELECT Department, COUNT(*) AS TotalStudents
+FROM Student
+GROUP BY Department;
+
+SELECT AVG(Marks) AS AverageMarks
+FROM Student;
