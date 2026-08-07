@@ -1,0 +1,36 @@
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(100),
+    Author VARCHAR(100),
+    Price DECIMAL(8,2),
+    AvailableCopies INT
+);
+
+INSERT INTO Books
+VALUES
+(101,'Java Programming','James Gosling',650,10),
+(102,'Python Basics','Guido van Rossum',550,8),
+(103,'SQL Fundamentals','Oracle',700,5),
+(104,'Data Structures','Mark Allen',600,7);
+
+SELECT * FROM Books;
+
+SELECT * FROM Books
+WHERE Price > 600;
+
+UPDATE Books
+SET AvailableCopies = 12
+WHERE BookID = 101;
+
+DELETE FROM Books
+WHERE BookID = 104;
+
+SELECT *
+FROM Books
+ORDER BY Price DESC;
+
+SELECT AVG(Price) AS AveragePrice
+FROM Books;
+
+SELECT MAX(Price) AS HighestPrice
+FROM Books;
