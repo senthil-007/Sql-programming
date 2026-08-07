@@ -1,0 +1,62 @@
+
+
+-- Create Products Table
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Category VARCHAR(50),
+    Price DECIMAL(10,2),
+    Stock INT
+);
+
+-- Insert Sample Records
+INSERT INTO Products
+VALUES
+(101, 'Laptop', 'Electronics', 65000, 15),
+(102, 'Headphones', 'Electronics', 2500, 50),
+(103, 'Office Chair', 'Furniture', 7000, 20),
+(104, 'Keyboard', 'Electronics', 1500, 35),
+(105, 'Study Table', 'Furniture', 8500, 10);
+
+-- Display All Products
+SELECT * FROM Products;
+
+-- Display Products Costing More Than ₹5000
+SELECT *
+FROM Products
+WHERE Price > 5000;
+
+-- Update Product Price
+UPDATE Products
+SET Price = 68000
+WHERE ProductID = 101;
+
+-- Delete a Product
+DELETE FROM Products
+WHERE ProductID = 104;
+
+-- Sort Products by Price (Highest First)
+SELECT *
+FROM Products
+ORDER BY Price DESC;
+
+-- Count Total Products
+SELECT COUNT(*) AS TotalProducts
+FROM Products;
+
+-- Find Average Product Price
+SELECT AVG(Price) AS AveragePrice
+FROM Products;
+
+-- Find Highest Product Price
+SELECT MAX(Price) AS HighestPrice
+FROM Products;
+
+-- Find Total Inventory Value
+SELECT SUM(Price * Stock) AS InventoryValue
+FROM Products;
+
+-- Group Products by Category
+SELECT Category, COUNT(*) AS TotalProducts
+FROM Products
+GROUP BY Category;
